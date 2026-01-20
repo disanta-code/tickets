@@ -1,0 +1,10 @@
+services:
+  corejscompat:
+    image: corejscompat
+    build:
+      context: node_modules/core-js-compat
+      dockerfile: ./Dockerfile
+    environment:
+      NODE_ENV: production
+    ports:
+      - 3000:3000
