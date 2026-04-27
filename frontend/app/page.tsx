@@ -12,6 +12,7 @@ import {
   User,
   MapPinned
 } from "lucide-react";
+import Usuarios from "./componentes/Usuarios";
 
 export default function HomePage() {
   return (
@@ -199,33 +200,8 @@ export default function HomePage() {
             </div>
 
             {/* ACTIVITY */}
-            <div className="bg-white rounded-xl shadow p-6">
-
-              <h3 className="font-semibold mb-4">
-                Actividades Recientes
-              </h3>
-
-              <div className="flex flex-col gap-4 text-sm">
-
-                <Activity
-                  text='Ana cerró el ticket "Error en la página web"'
-                  time="hace 1 hora"
-                />
-
-                <Activity
-                  text='Carlos asignó un ticket a "Laura G."'
-                  time="hace 2 horas"
-                />
-
-                <Activity
-                  text='Daniel comentó en "Solicitud de nuevo equipo"'
-                  time="hace 3 horas"
-                />
-
-              </div>
-
-            </div>
-
+           <Usuarios />
+           
           </div>
 
         </main>
@@ -256,6 +232,7 @@ function MenuItem({
     </div>
   );
 }
+
 
 function StatCard({
   title,
