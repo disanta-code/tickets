@@ -1,5 +1,5 @@
 package com.tickets.mi_web_app.controladores;
-import com.tickets.mi_web_app.modelos.Usuario;
+import com.tickets.mi_web_app.modelos.usuario;
 import com.tickets.mi_web_app.servicios.ServicioUsuario;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,7 @@ public class ControladorUsuario {
 
     // GET: obtener todos los usuarios
     @GetMapping
-    public List<Usuario> obtenerUsuarios() {
+    public List<usuario> obtenerUsuarios() {
         return usuarioService.getUsers();
     }
 

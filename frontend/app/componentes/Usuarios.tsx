@@ -2,26 +2,53 @@
 
 import { useEffect, useState } from "react";
 
+type Usuario = {
+  id: number;
+  username: string;
+  email: string;
+};
+
 export default function Usuarios() {
 
-  // Estado donde se guardarán los usuarios
-  const [usuarios, setUsuarios] = useState([]);
+  const [usuarios, setUsuarios] = useState<Usuario[]>([]);
 
-  // Conexion a la API para obtener los usuarios al cargar el componente
   useEffect(() => {
 
-    fetch("http://localhost:8080/api/usuarios")
-      .then((response) => response.json())
+    fetch("http://localhost:8080/api/usuarios", {
+      method: "GET",
+      credentials: "include"
+    })
+      .then((response) => {
+
+        // Si Spring redirige al login
+        if (response.redirected) {
+
+          console.log("Redirigido al login");
+
+          window.location.href = response.url;
+
+          return null;
+        }
+
+        return response.json();
+      })
       .then((data) => {
-        console.log("Usuarios:", data);
-        setUsuarios(data);
+
+        if (data && Array.isArray(data)) {
+          setUsuarios(data);
+        }
+
       })
       .catch((error) => {
+
         console.error("Error al obtener usuarios:", error);
+
+        setUsuarios([]);
+
       });
 
   }, []);
-// --------------------------------------------------------------------------
+
   return (
     <div className="bg-white rounded-xl shadow p-6">
 
@@ -31,18 +58,17 @@ export default function Usuarios() {
 
       <div className="flex flex-col gap-3 text-sm">
 
-        {usuarios.map((usuario, index) => (
+        {usuarios.map((usuario) => (
           <div
-            key={index}
+            key={usuario.id}
             className="flex justify-between border-b pb-2"
           >
             <span className="font-medium">
-              {usuario.username} 
+              {usuario.username}
             </span>
 
             <span className="text-gray-500">
               {usuario.email}
-
             </span>
           </div>
         ))}

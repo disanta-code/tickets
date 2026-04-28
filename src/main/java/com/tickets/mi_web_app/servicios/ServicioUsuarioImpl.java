@@ -1,6 +1,6 @@
 package com.tickets.mi_web_app.servicios;
 
-import com.tickets.mi_web_app.modelos.Usuario;
+import com.tickets.mi_web_app.modelos.usuario;
 import com.tickets.mi_web_app.repositorios.RepositorioUsuario;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +15,7 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
     private RepositorioUsuario userRepository;
 
     @Override
-    public List<Usuario> getUsers() {
+    public List<usuario> getUsers() {
         return userRepository.findAll();
     }
 
